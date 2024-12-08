@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Change to the repository directory (if needed)
+cd /path/to/your/repository || exit 1  # Replace with your actual path
+
+# Check if there are any changes
+if [[ $(git status --porcelain) ]]; then
+  echo "Changes detected. Committing changes..."
+
+  # Stage all changes (can change to specific files if needed)
+  git add .
+
+  # Commit with a custom message (you can modify the message or add dynamic inputs)
+  COMMIT_MESSAGE="Automatic commit $(date '+%Y-%m-%d %H:%M:%S')"
+  git commit -m "$COMMIT_MESSAGE"
+
+  # Push to the remote repository (replace 'main' with the branch name if necessary)
+  git push origin main
+
+  echo "Changes committed and pushed successfully."
+
+else
+  echo "No changes detected. Exiting."
+fi
